@@ -1,0 +1,25 @@
+<head>
+<title>
+  <h1>Pinterest</h1><br>
+  <h2>Join Pinterest to find (and save!) all the things that inspire you.</h2>
+</title>
+</head>
+
+<body>
+  <a class="btn btn-default" href="<%= users_login_path %>" role="button">Log In!</a><br>
+  <h2>Sign Up!<h2><br>
+  <h2>Enter your email and a new password!<h2>
+  <%= form_for @user do |f| %>
+    <div class="field">
+      <%= f.label :email %><br>
+      <%= f.text_field :email %>
+    </div>
+    <div class="field">
+      <%= f.label :password %><br>
+      <%= f.text_field :password %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+  <% end %>

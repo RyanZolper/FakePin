@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pin image:</strong>
+  <div class="showimg"><%= image_tag "#{@pin.pinimage}" %></div>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @pin.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @pin.description %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @pin.url %>
+</p>
+
+Add to Board:
+
+<%= form_for(@pin) do |f| %>
+  <div class="field">
+    <%= f.label :board %><br>
+    <%= f.select :board_id, Board.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<%= link_to 'Edit', edit_pin_path(@pin) %> |
+<%= link_to 'Back', pins_path %>

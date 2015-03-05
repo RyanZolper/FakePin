@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<h1><%= link_to("FakePin", root_path, {:style=>'color:#FF0000;', :class => "css_class"}) %></h1>
+<%= link_to 'My Pins', mypins_path %>
+<%= link_to 'New Pin', new_pin_path(@user) %>
+<%= link_to 'My Boards', myboards_path %>
+<h4>
+<%= form_tag(pins_path, :method => "get", class: "navbar-form", id: "search-form") do %>
+    <div class="input-append">
+      <%= text_field_tag :search, params[:search], class: "span2", placeholder: "Search Pins" %>
+      <button class="btn btn-primary" type="submit"><i class="icon-search"></i>Search</button>
+    </div>
+  <% end %>
+</h4>
+
+<div class="container">
+  <div class="row">
+    <% @pins.each do |pin| %>
+      <div class="item">
+        <div class="well">
+          <%= link_to pin do %>
+          <%= image_tag("#{pin.pinimage}", class: "img-responsive img-rounded") %>
+          <% end %>
+
+
+          <%= link_to addpin_path(pin), 'data-popup' => true, 'data-pin-config' => "above" do %>
+            <%= image_tag("//assets.pinterest.com/images/pidgets/pin_it_button.png") %>
+
+          <% end %>
+
+          <br>
+          <h2><%= pin.title %></h2>
+          <h3><%= pin.description %></h3>
+        </div>
+
+      </div>
+
+
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js" ></script>
+
+<script src="/assets/application.js"></script>
+
+
+
+<br>
