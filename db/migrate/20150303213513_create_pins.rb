@@ -4,7 +4,7 @@ class CreatePins < ActiveRecord::Migration
       t.string :title
       t.string :description
       t.string :url
-      t.string :pin_image
+      
 
       t.timestamps null: false
     end

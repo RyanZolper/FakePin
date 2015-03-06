@@ -16,6 +16,7 @@
 
 class Pin < ActiveRecord::Base
   scope :mypins, -> { where(user_id: 1)}
+  scope :noimage, -> { where(pinimage: "")}
   belongs_to :board, inverse_of: :pins
   belongs_to :user, inverse_of: :pins
   mount_uploader :pinimage, PinimageUploader

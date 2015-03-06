@@ -29,7 +29,7 @@ class PinsController < InheritedResources::Base
   private
 
     def pin_params
-      params.require(:pin).permit(:title, :description, :url, :pinimage, :page, :user_id)
+      params.require(:pin).permit(:title, :description, :url, :pinimage, :page, :user_id, :board_id, :pin_image)
     end
 
     def current_user
