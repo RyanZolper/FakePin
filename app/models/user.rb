@@ -12,7 +12,8 @@
 #
 
 class User < ActiveRecord::Base
-  
+
+  scope :admin, -> {where(admin: true)}
   has_many :pins, dependent: :destroy
   has_many :boards, dependent: :destroy
 end

@@ -4,9 +4,20 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   #before_action :isadmin
+  before_action :current_user
+
+  def authenticate_admin_user!
+    redirect_to root_path if !signed_in? || !current_user.admin?
+  end
+
+  helper_method :current_user, :signed_in?
 
   def current_user
     @current_user ||= User.last
+  end
+
+  def signed_in?
+    return true if current_user.present?
   end
 
   private
