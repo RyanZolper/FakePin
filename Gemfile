@@ -36,7 +36,7 @@ gem 'fog'
 gem 'carrierwave'
 gem 'activeadmin', github: 'activeadmin'
 gem 'kaminari'
-gem 'inherited_resources'
+
 
 
 

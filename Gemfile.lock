@@ -323,7 +323,6 @@ DEPENDENCIES
   dotenv-rails
   faker (~> 1.4.3)
   fog
-  inherited_resources
   jbuilder (~> 2.0)
   jquery-rails
   kaminari
