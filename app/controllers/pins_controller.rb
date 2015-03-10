@@ -12,6 +12,7 @@ class PinsController < ApplicationController
         @pins = Pin.mypins.order("created_at DESC")
       else
         @pins = Pin.order("created_at DESC")
+        logger.debug "All pins inspected: #{@pins.inspect}"
       end
     end
   end
