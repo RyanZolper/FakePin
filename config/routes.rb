@@ -2,13 +2,17 @@ Rails.application.routes.draw do
 
 
   ActiveAdmin.routes(self)
-  root 'pins#index'
+  get 'pins/index'
   get 'pins/create'
   get '/pins/mypins' => 'pins#index', as: 'mypins'
   get '/boards/myboards' => 'boards#index', as: 'myboards'
   get '/boards/addpin' => 'boards#addpin', as: 'addpin'
 
-
+  root 'users#home'
+  get 'users/loginpage'
+  get 'users/login'
+  post 'users/login'
+  get 'users/logout'
 
 
 

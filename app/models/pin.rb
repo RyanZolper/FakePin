@@ -21,7 +21,7 @@ class Pin < ActiveRecord::Base
   mount_uploader :pinimage, PinimageUploader
 
   before_create do
-    self.user_id ||= 1
+    self.user_id ||= @current_user.id
   end
 
   def self.search(query)

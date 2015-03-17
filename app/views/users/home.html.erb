@@ -6,10 +6,14 @@
 </head>
 
 <body>
-  <a class="btn btn-default" href="<%= users_login_path %>" role="button">Log In!</a><br>
+  <a class="btn btn-default" href="<%= users_loginpage_path %>" role="button">Log In!</a><br>
   <h2>Sign Up!<h2><br>
   <h2>Enter your email and a new password!<h2>
   <%= form_for @user do |f| %>
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
     <div class="field">
       <%= f.label :email %><br>
       <%= f.text_field :email %>
@@ -17,6 +21,10 @@
     <div class="field">
       <%= f.label :password %><br>
       <%= f.text_field :password %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation %><br>
+      <%= f.text_field :password_confirmation %>
     </div>
     <div class="actions">
       <%= f.submit %>

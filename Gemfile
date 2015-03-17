@@ -29,6 +29,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 gem 'thin'
+gem 'bcrypt', '~> 3.1.7'
 
 
 gem 'faker', '~> 1.4.3'

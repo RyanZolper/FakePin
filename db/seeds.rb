@@ -5,6 +5,6 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create( name: 'Sample User', email: 'yadayada@yadoo.com',  password: 'password', admin: true)
+User.create( name: 'Sample User', email: 'yadayada@yadoo.com',  password_digest: 'password', admin: true)
 
 Pin.create( title: 'Sample 1', description: 'yadayadyadaydaydayadya', user_id: '30', remote_pinimage_url: 'http://i.imgur.com/NJvCwj3.jpg')
