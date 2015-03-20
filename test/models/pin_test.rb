@@ -16,7 +16,8 @@
 require 'test_helper'
 
 class PinTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "Pin needs title, pinimage and user_id" do
+    pin = Pin.new
+    assert_not pin.save, "Saved pin without required attrs"
+  end
 end

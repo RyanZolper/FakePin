@@ -14,7 +14,8 @@
 #
 
 class Pin < ActiveRecord::Base
-  scope :mypins, -> { where(user_id: 1)}
+  validates :title, :pinimage, :user_id, presence: :true
+  scope :mypins, -> { where(user_id: @current_user.id)}
   scope :noimage, -> { where(pinimage: "")}
   belongs_to :board, inverse_of: :pins
   belongs_to :user, inverse_of: :pins

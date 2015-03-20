@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
   before_action :current_user, except: [:home, :create, :login, :loginpage, :logout]
 
   def authenticate_admin_user!
-    redirect_to root_path if !signed_in? || !current_user.admin?
+    redirect_to root_path if !signed_in?
+    redirect_to pins_path if !current_user.admin?
   end
 
   helper_method :current_user, :signed_in?

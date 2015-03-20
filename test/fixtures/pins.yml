@@ -19,10 +19,10 @@ one:
   title: MyString
   description: MyString
   url: MyString
-  pin_image: MyString
+  pinimage: MyString
 
 two:
-  title: MyString
+  title: X
   description: MyString
   url: MyString
-  pin_image: MyString
+  pinimage: MyString

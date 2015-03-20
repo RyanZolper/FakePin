@@ -3,6 +3,8 @@ require 'test_helper'
 class PinsControllerTest < ActionController::TestCase
   setup do
     @pin = pins(:one)
+    cookies[:current_user_id] = users(:one).id
+    @searchpins = Pin.search(params[:search]).order("created_at DESC")
   end
 
   test "should get index" do
@@ -18,7 +20,7 @@ class PinsControllerTest < ActionController::TestCase
 
   test "should create pin" do
     assert_difference('Pin.count') do
-      post :create, pin: { description: @pin.description, pin_image: @pin.pin_image, title: @pin.title, url: @pin.url }
+      post :create, pin: { description: @pin.description, pinimage: @pin.pinimage, title: @pin.title, url: @pin.url }
     end
 
     assert_redirected_to pin_path(assigns(:pin))
@@ -35,7 +37,7 @@ class PinsControllerTest < ActionController::TestCase
   end
 
   test "should update pin" do
-    patch :update, id: @pin, pin: { description: @pin.description, pin_image: @pin.pin_image, title: @pin.title, url: @pin.url }
+    patch :update, id: @pin, pin: { description: @pin.description, pinimage: @pin.pinimage, title: @pin.title, url: @pin.url }
     assert_redirected_to pin_path(assigns(:pin))
   end
 
@@ -44,6 +46,30 @@ class PinsControllerTest < ActionController::TestCase
       delete :destroy, id: @pin
     end
 
+  test "index view correct" do
+    get :index
+    assert_template :index
+    assert_template layout: "layouts/application"
+  end
+
+  test "search index" do
+    get params[:search]
+    assert_template :index
+  end
+
+  test "search works" do
+    get(:index, {:search => 'X'})
+    assert_template :index
+    assert_equal @searchpins, pins(:two)
+  end
+
     assert_redirected_to pins_path
   end
+
+  class PinsRoutesTest < ActionController::TestCase
+    test "should route to pin" do
+      assert_routing '/pins/1', { controller: "pins", action: "show", id: "1" }
+    end
+  end
+
 end

@@ -10,6 +10,7 @@
 #
 
 class Board < ActiveRecord::Base
+  validates :name, :user_id, presence: :true
   scope :myboards, -> { where(user_id: 1)}
   scope :addpin, -> { where(user_id: 1)}
   belongs_to :pin, inverse_of: :boards
