@@ -15,15 +15,12 @@
 
 class Pin < ActiveRecord::Base
   validates :title, :pinimage, :user_id, presence: :true
-  scope :mypins, -> { where(user_id: @current_user.id)}
   scope :noimage, -> { where(pinimage: "")}
   belongs_to :board, inverse_of: :pins
   belongs_to :user, inverse_of: :pins
   mount_uploader :pinimage, PinimageUploader
 
-  before_create do
-    self.user_id ||= @current_user.id
-  end
+
 
   def self.search(query)
     where("title like ?", "%#{query}%")

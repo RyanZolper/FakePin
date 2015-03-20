@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   #before_action :isadmin
-  before_action :current_user, except: [:home, :create, :login, :loginpage, :logout]
+  before_action :current_user
+  before_action :signed_in?
 
   def authenticate_admin_user!
     redirect_to root_path if !signed_in?
@@ -14,11 +15,14 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def current_user
-    @current_user ||= User.find(cookies[:current_user_id])
+    @current_user ||= User.where(:id => cookies[:current_user_id]).first
   end
 
   def signed_in?
-    return true if current_user.present?
+    if current_user.present?
+      return true
+    else redirect_to root_path
+    end
   end
 
   private

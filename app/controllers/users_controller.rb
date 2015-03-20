@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  skip_before_action :current_user, except: [:logout]
+  skip_before_action :signed_in?
 
   def new
   end

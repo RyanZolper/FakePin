@@ -4,7 +4,6 @@ class PinsControllerTest < ActionController::TestCase
   setup do
     @pin = pins(:one)
     cookies[:current_user_id] = users(:one).id
-    @searchpins = Pin.search(params[:search]).order("created_at DESC")
   end
 
   test "should get index" do
@@ -60,7 +59,7 @@ class PinsControllerTest < ActionController::TestCase
   test "search works" do
     get(:index, {:search => 'X'})
     assert_template :index
-    assert_equal @searchpins, pins(:two)
+    assert_equal Pin.search(params[:search]).order("created_at DESC"), pins(:two)
   end
 
     assert_redirected_to pins_path

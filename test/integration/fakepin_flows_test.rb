@@ -19,8 +19,14 @@ class FakepinFlowsTest < ActionDispatch::IntegrationTest
     assert_redirected_to root_path
   end
 
-  #test "mypins only" do
-  #  get '/pins', {:scope => :mypins}, {:user_id => 3}
-  #end
+  test "mypins only" do
+    assert_recognizes({ controller: "pins", action: "index"}, '/pins/mypins')
+    get '/pins/mypins'
+    assert_not_equal Pin.all, @pins
+
+    get '/pins/mypins', nil, { "HTTP_COOKIE" => "current_user_id=nil"}
+    assert_redirected_to root_path
+
+  end
 
 end

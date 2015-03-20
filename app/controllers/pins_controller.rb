@@ -9,7 +9,7 @@ class PinsController < ApplicationController
       @pins = Pin.search(params[:search]).order("created_at DESC")
     else
       if request.fullpath.include?('pins/mypins')
-        @pins = Pin.mypins.order("created_at DESC")
+        @pins = Pin.where("user_id = #{@current_user.id}")
       else
         @pins = Pin.order("created_at DESC")
         logger.debug "All pins inspected: #{@pins.inspect}"
@@ -33,8 +33,10 @@ class PinsController < ApplicationController
 
   # POST /pins
   # POST /pins.json
+
+
   def create
-    @pin = Pin.new(pin_params)
+    @pin = @current_user.pins.new(pin_params)
 
     respond_to do |format|
       if @pin.save
