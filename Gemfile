@@ -39,7 +39,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'kaminari'
 
 
-
+gem "letter_opener", :group => :development
 
 
 # Use Unicorn as the app server
