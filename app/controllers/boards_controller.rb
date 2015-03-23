@@ -5,7 +5,11 @@ class BoardsController < ApplicationController
   # GET /boards
   # GET /boards.json
   def index
-    @boards = Board.all
+    if request.fullpath.include?('boards/myboards')
+      @boards = @current_user.boards.all
+    else
+      @boards = Board.all
+    end
   end
 
   # GET /boards/1
