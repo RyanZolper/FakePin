@@ -9,9 +9,9 @@ class PinsController < ApplicationController
       @pins = Pin.search(params[:search]).order("created_at DESC")
     else
       if request.fullpath.include?('pins/mypins')
-        @pins = Pin.where("user_id = #{@current_user.id}")
+        @pins = @current_user.pins.all
       else
-        @pins = Pin.order("created_at DESC")
+        @pins = Pin.includes(:user).order("created_at DESC")
         logger.debug "All pins inspected: #{@pins.inspect}"
       end
     end
