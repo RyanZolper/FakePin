@@ -79,11 +79,13 @@ class PinsController < ApplicationController
       @pin = Pin.find(params[:id])
     end
 
+
+
     def authenticate_pin
       if @pin.user_id != current_user.id
         if @current_user.admin != true
-          redirect_to root_path
-          flash[:notice] = "Access Denied!"
+          redirect_to pins_path
+          flash[:alert] = "Access Denied!"
         end
       end
     end
