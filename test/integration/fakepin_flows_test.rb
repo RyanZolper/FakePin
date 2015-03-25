@@ -2,11 +2,13 @@ require 'test_helper'
 
 class FakepinFlowsTest < ActionDispatch::IntegrationTest
 
+  fixtures :users, :pins
+
   setup do
-    cookies[:current_user_id] = users(:one).id
   end
 
   test "nav links" do
+    post '/users/login', {"user"=>{"email"=>"MyString", "password"=>"pwd"}}
     get '/pins/index'
     assert_response :success
     assert_select 'a', 'My Pins', true
@@ -15,16 +17,21 @@ class FakepinFlowsTest < ActionDispatch::IntegrationTest
   end
 
   test "admin only" do
+    post '/users/login', {"user"=>{"email"=>"MyString", "password"=>"pwd"}}
     get '/admin'
     assert_redirected_to pins_path
   end
 
-  test "mypins only" do
+  test "mypins works" do
+    post '/users/login', {"user"=>{"email"=>"MyString", "password"=>"pwd"}}
     assert_recognizes({ controller: "pins", action: "index"}, '/pins/mypins')
     get '/pins/mypins'
     assert_not_equal Pin.all, @pins
+  end
 
-    get '/pins/mypins', nil, { "HTTP_COOKIE" => "current_user_id=nil"}
+  test "mypins only" do
+
+    get '/pins/mypins'
     assert_redirected_to root_path
 
   end

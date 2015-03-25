@@ -19,8 +19,10 @@ one:
   id: 1
   name: MyString
   email: MyString
+  password_digest: <%= BCrypt::Password.create("pwd", cost: 4) %>
 
 two:
   id: 2
-  name: MyString
-  email: MyString
+  name: NotMyString
+  email: NotMyString
+  password_digest: <%= BCrypt::Password.create("pwd", cost: 4) %>

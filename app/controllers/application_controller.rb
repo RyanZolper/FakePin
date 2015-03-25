@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def current_user
-    @current_user ||= User.where(:id => cookies[:current_user_id]).first
+    @current_user ||= User.where(:id => session[:current_user_id]).first
   end
 
   def signed_in?
@@ -29,7 +29,7 @@ class ApplicationController < ActionController::Base
 
   def isadmin
     if current_user.admin != 'true'
-      redirect_to root_path
+      redirect_to pins_path
       flash[:notice] = "Access Denied!"
     end
   end

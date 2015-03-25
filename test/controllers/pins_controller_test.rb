@@ -3,7 +3,7 @@ require 'test_helper'
 class PinsControllerTest < ActionController::TestCase
   setup do
     @pin = pins(:one)
-    cookies[:current_user_id] = users(:one).id
+    session[:current_user_id] = users(:one).id
   end
 
 
@@ -28,7 +28,7 @@ class PinsControllerTest < ActionController::TestCase
   end
 
   test "search index" do
-    get :index, params: {"utf8"=>"✓", :search=>"X"}
+    get :index, {"utf8"=>"✓", :search=>"X"}
     assert_template :index
   end
 
