@@ -16,7 +16,7 @@ class FakepinFlowsTest < ActionDispatch::IntegrationTest
 
   test "admin only" do
     get '/admin'
-    assert_redirected_to root_path
+    assert_redirected_to pins_path
   end
 
   test "mypins only" do

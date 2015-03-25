@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   ActiveAdmin.routes(self)
   get 'pins/index'
+  #get 'pins/index/:search' => 'pins#index', as: 'search'
   get 'pins/create'
   get '/pins/mypins' => 'pins#index', as: 'mypins'
   get '/boards/myboards' => 'boards#index', as: 'myboards'

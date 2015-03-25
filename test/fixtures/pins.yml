@@ -16,13 +16,15 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  title: MyString
+  title: Apin
   description: MyString
   url: MyString
   pinimage: MyString
+  user_id: 1
 
 two:
-  title: X
+  title: Xpin
   description: MyString
   url: MyString
   pinimage: MyString
+  user_id: 2
