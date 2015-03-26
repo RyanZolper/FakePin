@@ -3,13 +3,15 @@
 <head>
   <title>Fakepin</title>
 
+  <p id="alert"><%= alert %></p>
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= stylesheet_link_tag 'application', 'http://fonts.googleapis.com/css?family=Oleo+Script' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <p id="alert"><%= alert %></p>
+
 
 <%= yield %>
 
@@ -23,8 +25,8 @@
   <%= javascript_include_tag "jquery.autocomplete.js" %>
 
 
-
+<% if controller.action_name = "index" %>
   <%= javascript_include_tag "autocomp.js" %>
-
+<% end %>
 
 </html>

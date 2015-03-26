@@ -15,7 +15,7 @@ class UsersController < ApplicationController
     if @user && @user.authenticate(params[:user][:password])
       redirect_to pins_path, alert: "Login Success!"
       session[:current_user_id] = @user.id
-    else redirect_to 'users/loginpage', alert: "Try Again"
+    else redirect_to :back, alert: "Try Again"
     end
   end
   def logout
