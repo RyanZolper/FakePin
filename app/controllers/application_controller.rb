@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   def isadmin
     if current_user.admin != 'true'
       redirect_to pins_path
-      flash[:notice] = "Access Denied!"
+      flash[:alert] = "Access Denied!"
     end
   end
 end
