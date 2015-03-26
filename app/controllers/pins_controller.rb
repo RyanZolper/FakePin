@@ -1,10 +1,12 @@
 class PinsController < ApplicationController
   before_action :set_pin, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_pin, only: [:update, :edit, :destroy]
+  before_action :titlearray
 
   # GET /pins
   # GET /pins.json
   def index
+
     if params[:search]
       @pins = Pin.search(params[:search]).order("created_at DESC")
     else
@@ -20,6 +22,14 @@ class PinsController < ApplicationController
   # GET /pins/1
   # GET /pins/1.json
   def show
+  end
+
+  def titlearray
+    @titlearray = Array.new
+    @arraypins = Pin.all
+    @arraypins.each do |pin|
+      @titlearray << pin.title
+    end
   end
 
   # GET /pins/new

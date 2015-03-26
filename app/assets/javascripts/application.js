@@ -10,13 +10,6 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
-
-$('a[data-popup]').live('click', function(e) {
-  window.open( $(this).attr('href'), "Popup", "height=300, width=300" );
-  e.preventDefault();
-});
