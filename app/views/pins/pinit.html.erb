@@ -1,0 +1,15 @@
+
+
+<%= form_for @pin do |f| %>
+
+<div class="field">
+  <%= f.label :board %><br>
+  <%= f.select :board_id, @current_user.boards.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
+</div>
+
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+
+<% end %>

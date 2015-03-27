@@ -12,7 +12,7 @@
   <% end %>
   <div class="field">
     <%= f.label :board %><br>
-    <%= f.select :board_id, Board.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
+    <%= f.select :board_id, @current_user.boards.all.collect {|p| [ p.name, p.id ] }, {include_blank: 'None'} %>
   </div>
   <div class="field">
     <%= f.label :title %><br>

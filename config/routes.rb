@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   get 'pins/create'
   get '/pins/mypins' => 'pins#index', as: 'mypins'
   get '/boards/myboards' => 'boards#index', as: 'myboards'
-  get '/boards/addpin' => 'boards#addpin', as: 'addpin'
+  get 'pins/:id/pinit' => 'pins#pinit', as: 'pinit'
 
   root 'users#home'
   get 'users/loginpage'

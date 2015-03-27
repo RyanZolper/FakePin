@@ -1,5 +1,5 @@
 class PinsController < ApplicationController
-  before_action :set_pin, only: [:show, :edit, :update, :destroy]
+  before_action :set_pin, only: [:show, :edit, :update, :destroy, :pinit, :pinning]
   before_action :authenticate_pin, only: [:update, :edit, :destroy]
   before_action :titlearray
 
@@ -41,6 +41,16 @@ class PinsController < ApplicationController
   def edit
   end
 
+  def pinit
+    @boards = @current_user.boards.all
+  end
+
+  def pinning
+    if @pin.board_id != nil
+      redirect_to pins_path, notice: "Pinned!"
+    end
+  end
+
   # POST /pins
   # POST /pins.json
 
@@ -63,13 +73,13 @@ class PinsController < ApplicationController
   # PATCH/PUT /pins/1.json
   def update
     respond_to do |format|
-      if @pin.update(pin_params)
-        format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
-        format.json { render :show, status: :ok, location: @pin }
-      else
-        format.html { render :edit }
-        format.json { render json: @pin.errors, status: :unprocessable_entity }
-      end
+        if @pin.update(pin_params)
+          format.html { redirect_to @pin, notice: 'Pin was successfully updated.' }
+          format.json { render :show, status: :ok, location: @pin }
+        else
+          format.html { render :edit }
+          format.json { render json: @pin.errors, status: :unprocessable_entity }
+        end
     end
   end
 
@@ -92,10 +102,12 @@ class PinsController < ApplicationController
 
 
     def authenticate_pin
-      if @pin.user_id != current_user.id
-        if @current_user.admin != true
-          redirect_to pins_path
-          flash[:alert] = "Access Denied!"
+      if params[:pin].keys != ["board_id"]
+        if @pin.user_id != current_user.id
+          if @current_user.admin != true
+            redirect_to pins_path
+            flash[:notice] = "Access Denied!"
+          end
         end
       end
     end
